@@ -1,4 +1,5 @@
 // Assignment Code
+//var declarations 
 var generateBtn = document.querySelector("#generate");
 var lowLett = "abcdefjhijklmnopqrstuvwxyz".split("");
 var uppLett = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -7,8 +8,11 @@ var spelChar = "!@#$%^&*()".split("");
 
 var mainArray = [];
 console.log(mainArray);
-var passwordLenght = [];
+var passwordLength = [];
 var password = [];
+
+
+
 
 function writePassword() {
   var password = generatePassword();
@@ -17,24 +21,24 @@ function writePassword() {
   passwordText.value = password;
 };
 
+
 generateBtn.addEventListener("click", writePassword);
 var generateBtn = document.querySelector("generate");
 
+
+//main function - generates the letters, number and symbols used for password
 function generatePassword() {
   var mainArray = [];
-  passwordLenght = parseInt( 
+  passwordLength = parseInt( 
     prompt("please choose the lenght of your password, minimum of 8 characters and maximum of 120 characters") 
     );
-  if (passwordLenght < 7 || passwordLenght > 129)  {
-    window.alert("please try again, password must be larger than 8 and smaller than 128");
-    generatePassword();
-  }
-  console.log.apply(passwordLenght);
 
-  if (randomLowerCase && randomUpperCase && randomSpecial && randomNumber == false) {
-    window.alert("ERROR");
-    generatePassword();
+    // password length
+  if (passwordLength < 7 || passwordLength > 129)  {
+    window.alert("please try again, password must be larger than 8 and smaller than 128"); //return is conditions are not met
+    return generatePassword(); //return to generate password
   }
+  console.log.apply(passwordLength);
 
   var randomLowerCase = window.confirm("Would you like to use lower case letters?");
   if(randomLowerCase == true) {
@@ -56,11 +60,16 @@ function generatePassword() {
     mainArray = mainArray.concat(num)
   };
 
+  if (randomLowerCase == false && randomUpperCase == false && randomSpecial ==false && randomNumber == false) {
+    window.alert("ERROR");
+    return generatePassword();
+  }
+
   console.log(mainArray)
 
   // this will iterate over your choosen charaters array to get a random password
  
-  for (var i = 0; i < passwordLenght + 1; i++) {
+  for (var i = 0; i < passwordLength; i++) {
       password += mainArray[Math.floor(Math.random() * mainArray.length)];
   }
   
@@ -70,9 +79,17 @@ function generatePassword() {
   return password;
 }
 
-// generatePassword ();
-// generatePassword();
-// generateBtn.addEventListener("click", writePassword);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -133,7 +150,7 @@ function generatePassword() {
 // console.log(finalFinal);
 
 
-// var passwordLenght = 10;
+// var passwordLength = 10;
 // var password = " ";
 
 // function genPassword() {
