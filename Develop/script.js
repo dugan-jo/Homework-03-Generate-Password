@@ -33,50 +33,57 @@ function generatePassword() {
     prompt("please choose the lenght of your password, minimum of 8 characters and maximum of 120 characters") 
     );
 
-    // password length
+    // password length must be between 8 and 128 characters.  
   if (passwordLength < 7 || passwordLength > 129)  {
     window.alert("please try again, password must be larger than 8 and smaller than 128"); //return is conditions are not met
-    return generatePassword(); //return to generate password
+    return generatePassword(); //if password length is not met, return generate password and starts the fucntion over.
   }
   console.log.apply(passwordLength);
 
-  var randomLowerCase = window.confirm("Would you like to use lower case letters?");
+  var randomLowerCase = window.confirm("Would you like to use lower case letters?"); //asks user if they want lower case letters
   if(randomLowerCase == true) {
-    mainArray = mainArray.concat(lowLett);
+    mainArray = mainArray.concat(lowLett); //if ture; this line will add var lowLett to mainArray.  
   };
 
-  var randomUpperCase = window.confirm("Would you like to use UPPER case letters?");
+  var randomUpperCase = window.confirm("Would you like to use UPPER case letters?"); //asks the user if they want upper case letters
   if (randomUpperCase == true) {
-    mainArray = mainArray.concat(uppLett)
+    mainArray = mainArray.concat(uppLett) //if true this line will add var uppLett to mainArray
   };
 
-  var randomSpecial = window.confirm("Would you like to use Speical case symbols?");
+  var randomSpecial = window.confirm("Would you like to use Speical case symbols?"); //asks the user if they want special characters
   if(randomSpecial == true) {
-    mainArray = mainArray.concat(spelChar)
+    mainArray = mainArray.concat(spelChar) //if yes, this line adds spelChar to mainArray
   };
 
-  var randomNumber = window.confirm("Would you like to use numbers?");
+  var randomNumber = window.confirm("Would you like to use numbers?"); //asks if user would like numbers
   if(randomNumber == true) {
-    mainArray = mainArray.concat(num)
+    mainArray = mainArray.concat(num) //if yes then this line adds var num to mainArray
   };
 
-  if (randomLowerCase == false && randomUpperCase == false && randomSpecial ==false && randomNumber == false) {
-    window.alert("ERROR");
-    return generatePassword();
+  if (randomLowerCase == false && randomUpperCase == false && randomSpecial ==false && randomNumber == false) { //checks to see if they user answerd no to all characters
+    window.alert("ERROR, you must choose at least one.  PLEASE TRY AGAIN"); //if they choose the no to all, they will get this error message
+    return generatePassword(); //this will start the function all overa again.
   }
 
-  console.log(mainArray)
+  console.log(mainArray) //check the main array to see if it is accuarte.
 
   // this will iterate over your choosen charaters array to get a random password
- 
+ //four loop over mainArray at the lenght of the passwordLength
   for (var i = 0; i < passwordLength; i++) {
       password += mainArray[Math.floor(Math.random() * mainArray.length)];
+      //how we get password:
+        //Math.random returns a random number between 0 and 1 (not including 0 or 1);
+        //Math.floor return the largest whole number rounded down
+          //if you use Math.floor and Math.random alone, your password will only be the first index of mainArray.  bc you will only get the number 0.
+        //were taking the the mainArrays lenght (mainArray.length) and multiplying each iteration to Math.floor(Math.random) to get a random index number the lenght of mainArray.
   }
-  
-  
+
+ 
+  // console.log(Math.random);
+  // console.log(passwordLength(Math.floor(Math.random)));  
   console.log(password);
   // return passwordText;
-  return password;
+  return password; //return password
 }
 
 
